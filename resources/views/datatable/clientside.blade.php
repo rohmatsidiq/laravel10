@@ -1,5 +1,10 @@
 @extends('layout.main')
 
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
+@endsection
+
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -12,7 +17,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active">Data User</li>
+                        <li class="breadcrumb-item active">Data User (ClientSide)</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -31,23 +36,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Data User</h3>
-
-                            <div class="card-tools">
-                                <form action="/admin/user" method="GET">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="search" class="form-control float-right" value="{{ $request->search }}" placeholder="Search">
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table table-hover text-nowrap" id="clientSide">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -109,4 +101,13 @@
     </section>
     <!-- /.content -->
 </div>
+@endsection
+
+@section('script')
+<script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#clientSide').DataTable();
+    });
+</script>
 @endsection
